@@ -46,3 +46,14 @@ command in the Terminal in the m4_app directory:
 ```bash
 make clean
 ```
+# Project Descriptions / Instructions
+
+### * [Milestone 4](https://github.com/nathan-gardner/Embedded-Systems/blob/main/docs/m4.pdf)
+
+### * [Milestone 5](https://github.com/nathan-gardner/Embedded-Systems/blob/main/docs/m5.pdf)
+
+### * [Milestone 6](https://github.com/nathan-gardner/Embedded-Systems/blob/main/docs/m6.pdf)
+
+### * [Milestone 7](https://github.com/nathan-gardner/Embedded-Systems/blob/main/docs/m7.pdf)
+
+### * [Milestone 8](https://github.com/nathan-gardner/Embedded-Systems/blob/main/docs/m8.pdf)
