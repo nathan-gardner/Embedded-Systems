@@ -1,0 +1,20 @@
+The provided text application uses the
+parallel LCD interface. Be sure your
+jumper is located in the correct position.
+The seven-segment display changes its contents
+every second.  The invdividual digit displays
+are updated in turn. A digit display is updated
+every n milliseconds where n is shown in the
+lower-right corner of the LCD.
+
+The seven-segment displays cycles through
+the list of undergraduate courses I have
+taught over the years.  There is also a mode
+where the seven-segments drive each display
+in turn with a random number.
+
+The seven-segment display mode and the seven-
+segment refresh rate can be altered in a variety
+of ways..... try pressing SW2-SW5.
+
+Enjoy!

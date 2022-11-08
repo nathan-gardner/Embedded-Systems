@@ -1,0 +1,25 @@
+The files in src/generic_hw/ and include/generic_hw
+contain a skeleton of the hardware-specific files you
+must create.
+
+Copy the two esos_hwxxx_sui files (the .c and .h) to
+your repo.  Rename them:
+
+esos_stm32l4_edub_sui.c and esos_stm32l4_edub_sui.h
+
+Please these two files in a folder in your team repo.
+DO NOT PLACE THEM IN YOUR ESOS REPO.  You should have
+a folder called "MyESOS" or something similar to contain
+your versions of files which extend ESOS with new
+functionality.
+
+Add the appropriate references to your m6 Makefile
+to use these two files.
+
+Complete the function stubs to implement the basic
+hardware interactions with LEDs and switches.
+
+The hardware-independent code for the SUI will do
+most of the complex control of the user-interface.
+Your application can now call the hardward-independent
+API call for the ESOS SUI service.

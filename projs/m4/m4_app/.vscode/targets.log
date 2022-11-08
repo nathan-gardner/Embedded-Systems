@@ -1,0 +1,957 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Mar  7 09:28:07 2022
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# makefile (from 'Makefile', line 29)
+GCC_PATH = /home/blakemartin2014/Documents/gcc-arm-none-eabi-10.3-2021.10/bin
+# environment
+XDG_SESSION_CLASS = user
+# makefile (from 'Makefile', line 176)
+LDSCRIPT = ld.stm32.basic
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from 'Makefile', line 58)
+TARGET = m4_app
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 1
+# makefile (from 'Makefile', line 135)
+AS_DEFS = 
+# makefile (from 'Makefile', line 148)
+AS_INCLUDES = 
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/Milestone #4
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 116)
+BIN = $(CP) -O binary -S
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from 'Makefile', line 108)
+SZ = $(GCC_PATH)/$(PREFIX)size
+# environment
+_ = /usr/share/code/code
+# makefile (from 'Makefile', line 169)
+CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -nostartfiles -specs=nosys.specs -g -gdwarf-2 -MMD -MP -MF"$(@:%.o=%.d)"
+# environment
+JOURNAL_STREAM = 8:28700
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# makefile (from 'build/esos_stm32l4_rs232.d', line 1)
+MAKEFILE_LIST :=  Makefile build/esos_cb.d build/esos.d build/esos_comm.d build/esos_mail.d build/encryption.d build/esos_stm32l4_tick.d build/circularBuffer.d build/m4_app.d build/esos_utils.d build/esos_stm32l4_utils.d build/esos_stm32l4_rs232.d
+# automatic
+@F = $(notdir $@)
+# makefile (from 'Makefile', line 107)
+CP = $(GCC_PATH)/$(PREFIX)objcopy
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# makefile (from 'Makefile', line 64)
+DEBUG = 1
+# environment
+USERNAME = blakemartin2014
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 106)
+AS = $(GCC_PATH)/$(PREFIX)gcc -x assembler-with-cpp
+# environment
+MANAGERPID = 731
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c1d62965-1597-4724-91cf-72c846c0b148.sock
+# environment
+VSCODE_CWD = /home/blakemartin2014
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/blakemartin2014/.local/bin:/home/blakemartin2014/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+SESSION_MANAGER = local/blakemartin2014-VirtualBox:@/tmp/.ICE-unix/1054,unix/blakemartin2014-VirtualBox:/tmp/.ICE-unix/1054
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from 'Makefile', line 16)
+MAKECLEANFLAGS = -fR
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=e7e30863-cb2d-46c8-9353-b734852ce611&iid=e7e30863-cb2d-46c8-9353-b734852ce611&sid=e7e30863-cb2d-46c8-9353-b734852ce611","uploadToServer":true}
+# environment
+INVOCATION_ID = 04cf43b3242a48e2af199916a5030d5f
+# makefile (from 'Makefile', line 181)
+LDFLAGS = $(MCU) -specs=nano.specs -specs=nosys.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections -nostartfiles
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2880
+# automatic
+%F = $(notdir $%)
+# makefile (from 'Makefile', line 13)
+UNAME_S := Linux
+# environment
+DISPLAY = :0
+# makefile (from 'Makefile', line 96)
+ASM_SOURCES = 
+# makefile (from 'Makefile', line 66)
+OPT = -Og
+# environment
+VSCODE_PIPE_LOGGING = true
+# makefile (from 'Makefile', line 15)
+MAKECLEANCMD = rm
+# environment
+PWD = /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/Milestone #4
+# default
+.LOADED := 
+# environment
+SSH_AGENT_PID = 957
+# makefile (from 'Makefile', line 28)
+CM3_DIR = /home/blakemartin2014/Documents/libopencm3/libopencm3
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/blakemartin2014
+# environment
+VSCODE_CODE_CACHE_PATH = /home/blakemartin2014/.config/Code/CachedData/d6ee99e4c045a6716e5c653d7da8e9ae6f5a8b03
+# environment
+LOGNAME = blakemartin2014
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from 'Makefile', line 101)
+PREFIX = arm-none-eabi-
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'Makefile', line 138)
+C_DEFS = -DSTM32L4 -DSTM32L452xx -DHARDWARE_PLATFORM=NUCLEO64 -DESOS_USE_SERIAL_PORT -D__NUCLEO_BOARD
+# environment
+MAKELEVEL := 0
+# makefile (from 'Makefile', line 151)
+C_INCLUDES = -Iinclude -I$(ESOS_DIR)/include -I$(ESOS_DIR)/include/stm32l4_ocm3 -I$(CM3_DIR)/include -L$(CM3_DIR)/lib
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+QT_IM_MODULE = ibus
+# environment
+SHLVL = 0
+# makefile (from 'Makefile', line 128)
+FLOAT-ABI = -mfloat-abi=hard
+# makefile (from 'Makefile', line 115)
+HEX = $(CP) -O ihex
+# makefile (from 'Makefile', line 105)
+CC = $(GCC_PATH)/$(PREFIX)gcc
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# makefile (from 'Makefile', line 72)
+BUILD_DIR = build
+# makefile (from 'Makefile', line 159)
+ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+# default
+MAKE_VERSION := 4.2.1
+# makefile (from 'Makefile', line 24)
+USER = $(shell whoami)
+# makefile
+.DEFAULT_GOAL := all
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from 'Makefile', line 122)
+CPU = -mcpu=cortex-m4
+# makefile (from 'Makefile', line 125)
+FPU = -mfpu=fpv4-sp-d16
+# default
+MAKE_COMMAND := make
+# makefile (from 'Makefile', line 180)
+LIBDIR = -L$(CM3_DIR)/lib
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-79658291-1.64.1-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/blakemartin2014/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+QT_ACCESSIBILITY = 1
+# makefile (from 'Makefile', line 131)
+MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
+# 'override' directive
+.SHELLSTATUS := 0
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+LC_ALL = C
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# makefile (from 'Makefile', line 179)
+LIBS = -lc -lm -lnosys -lopencm3_stm32l4
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 27)
+ESOS_DIR = /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master
+# makefile (from 'Makefile', line 81)
+C_SOURCES = src/m4_app.c src/circularBuffer.c src/encryption.c $(ESOS_DIR)/src/esos.c $(ESOS_DIR)/src/esos_cb.c $(ESOS_DIR)/src/esos_utils.c $(ESOS_DIR)/src/esos_comm.c $(ESOS_DIR)/src/esos_mail.c $(ESOS_DIR)/src/stm32l4_ocm3/esos_stm32l4_tick.c $(ESOS_DIR)/src/stm32l4_ocm3/esos_stm32l4_utils.c $(ESOS_DIR)/src/stm32l4_ocm3/esos_stm32l4_rs232.c 
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# default
+.RECIPEPREFIX := 
+# makefile (from 'Makefile', line 194)
+OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o))) $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
+# environment
+LANG = C
+# environment
+VSCODE_PID = 2880
+# variable set hash-table stats:
+# Load=131/1024=13%, Rehash=0, Collisions=37/258=14%
+
+# Pattern-specific Variable Values
+ 
+
+# No pattern-specific variable values.
+
+# Directories
+
+# /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src (device 2053, inode 2460): 18 files, no impossibilities.
+# . (device 2053, inode 1342895): 10 files, no impossibilities.
+# /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3 (device 2053, inode 2506): 9 files, no impossibilities.
+# build (device 2053, inode 1574824): 39 files, no impossibilities.
+# src (device 2053, inode 1841783): No files, no impossibilities so far.
+
+# 76 files, no impossibilities in 5 directories.
+
+# Implicit Rules
+
+build/%.o: %.c Makefile | build
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+build/%.o: %.s Makefile | build
+#  recipe to execute (from 'Makefile', line 202):
+	$(AS) -c $(CFLAGS) $< -o $@
+
+build/%.hex: build/%.elf | build
+#  recipe to execute (from 'Makefile', line 209):
+	$(HEX) $< $@
+
+build/%.bin: build/%.elf | build
+#  recipe to execute (from 'Makefile', line 212):
+	$(BIN) $< $@
+
+# 4 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/gpio.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.780164426
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/i2c.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2_multi.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.756164425
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+build/esos_stm32l4_rs232.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_rs232.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_rs232.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_rs232.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/common.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_f.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_idcache.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rcc_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rng_common_v1.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/dispatch/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/systick.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2_multi.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_rs232.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos_stm32l4_rs232'
+#  Last modified 2022-03-07 09:21:55.668076206
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+build/esos_stm32l4_tick.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_tick.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_tick.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/common.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_f.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_idcache.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rcc_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rng_common_v1.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/dispatch/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/systick.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2_multi.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_rs232.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos_stm32l4_tick'
+#  Last modified 2022-03-07 09:21:55.504076198
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_all.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-01 19:17:02.136054357
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/adc.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+all: build/m4_app.elf build/m4_app.hex build/m4_app.bin
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos_stm32l4_utils.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:55.560076201
+#  File has been updated.
+#  Successfully updated.
+
+build/esos_utils.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_utils.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_utils.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos_utils'
+#  Last modified 2022-03-07 09:21:55.164076182
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/m4_app.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:54.568076154
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_utils.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rcc_common_all.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-30 13:57:11.424043652
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/memorymap.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/memorymap.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.720164424
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:54.92007617
+#  File has been updated.
+#  Successfully updated.
+
+build/esos_mail.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_mail.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_mail.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos_mail'
+#  Last modified 2022-03-07 09:21:55.432076195
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_mail.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+build/esos_comm.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_comm.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_comm.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos_comm'
+#  Last modified 2022-03-07 09:21:55.348076191
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.760164425
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_cb.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rng_common_v1.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.760164425
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_comm.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:20:58.176073465
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_all.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-30 12:10:16.344767633
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_v2.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-29 20:26:26.119808166
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos_cb.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:55.048076177
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/i2c.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.780164426
+ 
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+build:
+#  Implicit rule search has not been done.
+#  Last modified 2022-03-07 09:21:55.736076209
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 215):
+	mkdir $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/flash.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/encryption.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:20:58.264073469
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/home/blakemartin2014/Documents/libopencm3/libopencm3/lib/libopencm3_stm32l4.a:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-26 15:25:43.748159054
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/common.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.716164424
+#  File has been updated.
+#  Successfully updated.
+
+build/esos_stm32l4_utils.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_utils.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_utils.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/common.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_f.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_idcache.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rcc_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rng_common_v1.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/dispatch/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/systick.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2_multi.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_rs232.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_utils.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos_stm32l4_utils'
+#  Last modified 2022-03-07 09:21:55.568076201
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/nvic.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-01 11:33:27.272114929
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/adc.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.756164425
+#  File has been updated.
+#  Successfully updated.
+
+include/circularBuffer.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:20:58.260073469
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/circularBuffer.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-06 20:09:58.732065719
+#  File has been updated.
+#  Successfully updated.
+
+build/m4_app.o: src/m4_app.c Makefile src/m4_app.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h include/main.h include/circularBuffer.h include/circularBuffer.h include/user_app.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/common.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/memorymap.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/flash.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_f.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_idcache.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/gpio.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/i2c.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rcc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rcc_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rng.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/rng_common_v1.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/usart.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_all.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/usart_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/dispatch/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/nvic.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/systick.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/adc.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2.h /home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2_multi.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_rs232.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_rs232.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'm4_app'
+#  Last modified 2022-03-07 09:21:54.600076155
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/systick.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.720164424
+#  File has been updated.
+#  Successfully updated.
+
+build/m4_app.hex: build/m4_app.elf | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'm4_app'
+#  Last modified 2022-03-07 09:21:55.732076209
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 209):
+	$(HEX) $< $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/usart.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+build/esos.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos'
+#  Last modified 2022-03-07 09:21:54.952076172
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+include/main.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:20:58.264073469
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+include/user_app.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:20:58.264073469
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rcc.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-30 12:44:04.117211837
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/dispatch/nvic.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.720164424
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/esos_cb.o: /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_cb.c Makefile /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/esos_cb.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/all_generic.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_utils.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_task.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_mail.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_comm.h /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'esos_cb'
+#  Last modified 2022-03-07 09:21:55.068076177
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+build/m4_app.elf: build/m4_app.o build/circularBuffer.o build/encryption.o build/esos.o build/esos_cb.o build/esos_utils.o build/esos_comm.o build/esos_mail.o build/esos_stm32l4_tick.o build/esos_stm32l4_utils.o build/esos_stm32l4_rs232.o Makefile /home/blakemartin2014/Documents/libopencm3/libopencm3/lib/libopencm3_stm32l4.a
+#  Implicit rule search has not been done.
+#  Last modified 2022-03-07 09:21:55.728076209
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 205):
+	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+	$(SZ) $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-01 11:09:12.476073366
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/rng.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/encryption.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:54.740076162
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_idcache.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.760164425
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+ 
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 221):
+	-$(MAKECLEANCMD) $(MAKECLEANFLAGS) $(BUILD_DIR)
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/flash.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.776164426
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/gpio.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/circularBuffer.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:54.660076158
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_rs232.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3/esos_stm32l4_tick.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/cm3/nvic.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-31 21:54:19.704083286
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_f.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.760164425
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/esos_cb.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos_stm32l4_rs232.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:55.640076205
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos_stm32l4_tick.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:55.488076198
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/usart.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-30 11:55:52.918417014
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/stm32l4_ocm3/esos_stm32l4_rs232.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos_utils.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:55.152076181
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/i2c_common_v2.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.760164425
+#  File has been updated.
+#  Successfully updated.
+
+build/m4_app.bin: build/m4_app.elf | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'm4_app'
+#  Last modified 2022-03-07 09:21:55.736076209
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 212):
+	$(BIN) $< $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/l4/memorymap.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/include/lc-switch.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-04-14 12:32:10
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rcc.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/m4_app.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:20:58.264073469
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos_mail.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:55.420076194
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/adc_common_v2.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.756164425
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/esos_comm.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-07 09:21:55.316076189
+#  File has been updated.
+#  Successfully updated.
+
+build/encryption.o: src/encryption.c Makefile src/encryption.c include/main.h include/circularBuffer.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'encryption'
+#  Last modified 2022-03-07 09:21:54.752076162
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/rng.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-25 23:08:15.784164426
+#  File has been updated.
+#  Successfully updated.
+
+/home/blakemartin2014/Documents/libopencm3/libopencm3/include/libopencm3/stm32/common/flash_common_all.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-29 19:34:48.781043057
+#  File has been updated.
+#  Successfully updated.
+
+build/circularBuffer.o: src/circularBuffer.c Makefile src/circularBuffer.c include/circularBuffer.h | build
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'circularBuffer'
+#  Last modified 2022-03-07 09:21:54.676076159
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 199):
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+# files hash-table stats:
+# Load=93/1024=9%, Rehash=0, Collisions=29/857=3%
+# VPATH Search Paths
+
+vpath %.c /home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src:/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master/src/stm32l4_ocm3:src
+
+# 1 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 185 / storage = 7197 B / avg = 38 B
+# current buf: size = 8162 B / used = 7197 B / count = 185 / avg = 38 B
+
+# strcache performance: lookups = 1077 / hit rate = 82%
+# hash-table stats:
+# Load=185/8192=2%, Rehash=0, Collisions=6/1077=1%
+# Finished Make data base on Mon Mar  7 09:28:07 2022
+
+ 

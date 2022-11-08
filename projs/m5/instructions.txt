@@ -1,0 +1,93 @@
+IMPORTANT INSTRUCTIONS FOR M5:
+
+
+1.) Develop an appropriate header file4 called ptb.h that will create user-friendly definitions and
+macros for manipulating all hardware on the target board. Your macros should be written to
+ensure atomic operation and prevent errors if the header file is included multiple times. Macro
+and definition names should be consistent with other macro names in the distro.
+
+2.) You should create macros, definitions, and/or functions to manage and fully utilize the following components:
+    • LEDs 0-3 on PTB
+    * LD2 on the Nucleo
+    • pushbuttons SW2-SW5 on PTB, KEY0-KEY15 on the PTB, and the user PB1 on the Nucleo
+
+
+3.) Create (or plan on creating) similar macros for each of the PTB-based pushbuttons and LEDs. If immediate access
+to the data in these macros is not possible, the macros may only access a data structure which
+is maintained by some other running code you have developed.
+
+TURN_ON_LEDx()
+TURN_OFF_LEDx()
+TOGGLE_LEDx()
+IS_LEDx_SET()
+IS_LEDx_RESET()
+IS_SWx_PRESSED()
+IS_SWx_RELEASED()
+IS_KEYx_PRESSED()
+IS_KEYx_RELEASED()
+
+
+5.) Your design may consider the Nucleo user pushbutton B1 to be “SW1”
+and Nucleo user LED LD2 to be “LED4”, if convenient.
+
+************************************************************************************************************************************
+6.) Using the ESOS application your team created in Milestone #4, create a new ESOS program
+that continues to process UART data from your laptop. In this milestone, you should NOT use
+any interrupts directly as the application programmer. In this milestone’s ESOS application,
+the functionality is modified slightly to have the following operational modes:
+PTB pushbutton function
+B1 (SW1) accepts only keyboard commands
+SW2 removes any non-alphanumeric character
+SW3 converts lower-case to upper-case
+SW4 encrypts with key “TENNESSEETECH”
+SW5 decrypts with key “TENNESSEETECH”
+none echo
+
+
+* When no switch SW2-SW5 is depressed, the application will simply echo the UART stream with
+no changes.
+
+* If any switch SW2-SW5 is depressed, the application will “modify” the UART stream
+as given in the table.
+
+* In the event of multiple switches being depressed, the lower-number switches have priority,
+i.e. B1/SW1 is the highest priority and SW5 is the lowest.
+
+* Initialization, use, and shutdown, as required.
+___________________________________________________________________________________________________________
+
+38 MILESTONE 5. THE PERIPHERAL TARGET BOARD (PTB)
+When B1 is depressed, the application will only accept the keyboard commands to change the
+LED timing similar to previous milestone. However, in this application the user can control and
+inquire about the flashing of five LEDs: LED0-LED3 (on the PTB) and LD1 (on the Nucleo). Ob-
+viously, the keyboard commands need to change. “Sx,nnnn” will set the LEDx to have flashing
+period nnnn ms at a 50% duty cycle. The keyboard command “Lx” will return the flash period
+of LEDx with four decimal digits denoted the period in ms. Keyboard commands are not inter-
+preted in the none and SW2-SW5 operating modes; these modes simply modify the UART data
+stream as given in the table.
+Tip from the Trenches:
+With our object-oriented design paradigm and the ability to create concurrent tasks, you encour-
+aged to create modular and focused tasks to acheive your results. Inter-task communication
+is typically limited to global variable/structures or messaging. Tasks should not be large and
+should not perform unrelated operations. The LEDs are user interface and only approximate
+timing accuracy is required. One approach would be to create a single task per LED to manage
+each LED. Another approach would be to create single task that manages all LED operations.
+An addition command “Rhhhh” where “hhhhh” is four hex symbols will return the pressed state
+of keypad switches KEY0-KEY15. The hex symbols compose a “mask” where a one in the mask
+denotes a request to know the state of the button corresponding to that bit location. KEY0 would
+be the LSb. KEYA is the the 10th bit. KEYD is the 13th bit. KEY# is the 14th and KEY* is
+the 15th and MSb in the mask. For example, “RFFFF” request would return a four symbol hex
+string denoting the state of which keypad buttons are pressed. Request “R0001” would result in
+a four hex symbol response with only the LSb having the possibility of being one depending on
+the state of KEY0.
+5.3 Bonus Application
+Individual team member(s) or your team can earn a milestone bonus. For this milestone, the
+bonus application is a PC-side GUI application using PyQt to implement a visual representa-
+tion and control of the PTB LEDs and switches and UART processing using the VCP protocol
+described above. The code running on the ARM-Cortex must be independent and unchanged
+whether the PC is using a terminal application or GUI implementation. Consult with Dr. Bruce
+for requirments of the PC application. Bonus point will be awarded only if the underlying team
+application works correctly.
+If a bonus is submitted, then the submission needs to include a roster of the team member(s)
+who participated and contributed to the bonus.
+

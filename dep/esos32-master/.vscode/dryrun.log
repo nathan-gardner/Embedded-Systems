@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master'
+make: Leaving directory '/home/blakemartin2014/Documents/GitHub/EmbeddedGithub/esos32-master'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

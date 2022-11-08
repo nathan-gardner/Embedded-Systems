@@ -1,0 +1,13 @@
+The HW-independent portion of the SUI accepts
+two user words when registering a SUI element
+like an LED or button.  These two user words
+are available to the hardware-specific code
+you write for the L452+EduBAse routines.
+
+Devise a logical and EXTENSIBLE scheme of 
+user data for each LED and switch that allows
+for easy "decoding" in your hardware routines
+to determine which LED/switch is being addressed.
+
+Be sure you clearly document the usage and meaning
+of your user-defined words.

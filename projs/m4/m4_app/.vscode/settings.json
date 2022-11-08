@@ -1,0 +1,9 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "files.associations": {
+        "esos_stm32l4.h": "c",
+        "esos_stm32l4_rs232.h": "c",
+        "inttypes.h": "c",
+        "esos.h": "c"
+    }
+}

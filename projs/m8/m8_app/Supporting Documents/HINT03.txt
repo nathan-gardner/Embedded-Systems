@@ -1,0 +1,38 @@
+You will need to study the Edubase board schematic carefully
+for this milestone, as you are responsible for all three
+blocks required for an ESOS service:
+
+  * the HW-dependent code (often known as a device driver)
+  * the HW-independent code for the ESOS seven-segment service
+  * the ESOS user application
+
+There are two choices for the Edubase seven-segment device
+driver: bit-bang the shift registers or use the SPI peripheral.
+
+The bit-bang version will consume clock cycles and entail
+a fair bit (but straight-forward) code.  The SPI approach
+uses the processor's SPI peripheral to do the lion's share
+of the work. This approach takes a bit more study but 
+does not require much code and the SPI transfers occur
+simultaneously with ESOS app code execution.  This final
+fact is important as the time-division multiplexing of
+the seven-segments displays must occur constantly.
+
+NOTE: In general, the ESOS SPI peripheral is potentially
+      used by many different tasks since it may have
+      many SPI devices attached.  Therefore, you must
+      surround any SPI uses with a MUTEX. The ESOS
+      SPI service provides a MUTEX control functions
+      similar to the communications service.
+
+You can puruse either approach for this milestone.
+
+For a milestone bonus, you may submit both approaches.
+However, only the HW-dependent (device driver) files
+can be changed. (You will have a second set of .h and .c
+files, and a corresponding change in the Makefile to use
+them.)  The HW-independent seven-segment ESOS service
+code and the user application you write are NOT allowed
+to change at all.  The different low-level hardware code
+changes should not matter or be visible to the service
+and the user application.

@@ -1,0 +1,675 @@
+/*******************************************************************************
+ *
+ *                ECE 4140 Milestone 8 Firmware Version 1.1
+ *
+ *******************************************************************************
+ * FileName:       testapp.c
+ * Dependencies:   See INCLUDES section below
+ * Processor:      STM32 Arm Cortex-M4
+ * Compiler:       GCC 10.3-2021.10
+ * Company:        Tennessee Tech ECE
+ *
+ * Software License Agreement
+ *
+ * The software supplied herewith by Tennessee Tech University.
+ * The software is owned by Tennessee Tech University, and is
+ * protected under applicable copyright laws. All rights are reserved.
+ * Any use in violation of the foregoing restrictions may subject the
+ * user to criminal sanctions under applicable laws, as well as to
+ * civil liability for the breach of the terms and conditions of this license.
+ *
+ * THIS SOFTWARE IS PROVIDED IN AN "AS-IS" CONDITION. NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO,
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE APPLY TO THIS SOFTWARE. TENNESSEE TECH UNIVERSITY SHALL NOT,
+ * IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL OR CONSEQUENTIAL
+ * DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MODULE FUNCTION:
+ * This module will encode and decode text sent via the USART2
+ * on the NUCLEO-L452RE using a Vigenere cipher.
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Authors                Date                  Comment
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Blake Martin          04/26/22                 System Architect
+ * Nathan Gardner        04/26/22                 Original
+ * Triston Whitescarver  04/26/22                 Original
+ *********************************************************************************/
+#ifdef USE_TESTAPP
+
+#define  THOUSANDS_PLACE       4
+#define  HUNDREDS_PLACE        3
+#define  TENS_PLACE            2
+#define  ONES_PLACE            1
+#define  NUM_DIGITS_IN_PERIOD  5
+
+#define  ASCII_CHAR_LOWER_BOUND     32    // these are inclusive
+#define  ASCII_CHAR_UPPER_BOUND     127
+
+ //************** I N C L U D E S *****************
+#include "esos.h"
+#include "esos_stm32l4_edub_4bit_lcd44780wo.h"
+#include "esos_lcd44780wo.h"
+#include "main.h"
+#include "ptb.h"
+#include "circularBuffer.h"
+#include "keypad.h"
+#include "user_app.h"
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+
+//______________________________________________
+// HARDWARE INDEPENDENCE LIBS:
+#include "esos_stm32l4.h"
+#include "esos_sui.h"
+//_____________________________________________
+// 7seg LIBS:
+#include "esos_7seg.h"
+#include "esos_stm32l4_edub_7seg.h"
+//_____________________________________________
+
+//______________________________________________
+// HARDWARE INDEPENDENCE LIBS:
+#include "esos_stm32l4_edub_sui.h"
+#include "esos_stm32l4.h"
+#include "esos_sui.h"
+//_____________________________________________
+
+#ifdef __linux
+#include "esos_pc.h"
+#include "esos_pc_stdio.h"
+// INCLUDE these so our printf and other PC hacks work
+#include <stdio.h>
+#include <sys/select.h>
+#include <termios.h>
+#include <unistd.h>
+#else
+#include "esos_stm32l4.h"
+#include "esos_stm32l4_rs232.h"
+#endif
+
+//******* S U P P O R T    F U N C T I O N    P R O T O T Y P E S ************
+void __user_init_hw(void);
+void __initLCDMenu(uint8_t u8_LED_num);
+void shiftBufferLeft(uint8_t* buffer, uint8_t PushByte, uint8_t size);
+
+//************** G L O B A L S *****************
+/*
+ * Format of LED select menu on 2x16 LCD should go:
+ * ^LED1    1028 ms
+ * vpress D to edit
+ */
+uint8_t* psz_SelectMenuLineOneDefault = "         #### ms";
+uint8_t* psz_SelectMenuLineTwoDefault = " press D to edit";
+#define  LD2_OPTION   0
+#define  LED0_OPTION  1
+#define  LED1_OPTION  2
+#define  LED2_OPTION  3
+#define  LED3_OPTION  4
+#define  NUM_LEDS     5
+uint8_t* apsz_LEDNames[NUM_LEDS] = { "LD2 ", "LED0", "LED1", "LED2", "LED3" };
+uint8_t  u8_LCDCurrentState = LD2_OPTION;  // initialize to "lowest" LED
+enum status status_menu = SELECTING_LED;
+/* Circular buffer structures */
+circular_buffer_t cbuff_recv;
+circular_buffer_t cbuff_send;
+
+/* Globals and defines used for Vigenere cipher functions */
+uint8_t au8_key[] = "TENNESSEETECH"; // Global encryption key
+
+//_____________________________________________
+//Used in the encrypting text state
+uint8_t u8_IncomingCharBuff[16] = "                ";
+uint8_t u8_OutgoingCharBuff[16] = "                ";
+BOOL b_IsNotSpecialChar;
+//_____________________________________________
+
+/*
+ * u32_tim2_period initialization according to M3/M4 specifications.
+ * Must be between 1 and 9999 ms.
+ */
+
+ // Indexed array of LED periods [0] = LD2, [1] = LED0, ..., [4] = LED3
+uint32_t au32_LEDPeriods[5] = { 1000,1000,1000,1000,1000 };
+
+ESOS_SUI_SWITCH_HANDLE B1;
+ESOS_SUI_SWITCH_HANDLE SW2;
+ESOS_SUI_SWITCH_HANDLE SW3;
+ESOS_SUI_SWITCH_HANDLE SW4;
+ESOS_SUI_SWITCH_HANDLE SW5;
+
+ESOS_SUI_LED_HANDLE LED0;
+ESOS_SUI_LED_HANDLE LED1;
+ESOS_SUI_LED_HANDLE LED2;
+ESOS_SUI_LED_HANDLE LED3;
+
+
+//________________________________________________________________________________________
+// LINUX
+#ifdef _linux
+/*
+ * Simulate the timer ISR found on a MCU
+ *   The PC doesn't have a timer ISR, so this task will periodically
+ *   call the timer services callback instead.
+ *   USED ONLY FOR DEVELOPMENT AND TESTING ON PC.
+ *   Real MCU hardware doesn't need this task
+ */
+ESOS_USER_TASK(__simulated_isr)
+{
+    ESOS_TASK_BEGIN();
+    while (TRUE)
+    {
+        // call the ESOS timer services callback just like a real H/W ISR would
+        __esos_tmrSvcsExecute();
+        ESOS_TASK_WAIT_TICKS(1);
+
+    } // endof while(TRUE)
+    ESOS_TASK_END();
+} // end child_task
+#endif
+//_________________________________________________________________
+
+/*******************************************************************************
+ * Function:         ESOS_USER_TASK(recv_thread)
+ *
+ * PreCondition:     None
+ *
+ * Input:            None
+ *
+ * Output:           None
+ *
+ * Side Effects:     None
+ *
+ * Overview:         Reads in characters from USART2
+ *
+ * Note:             None
+ *
+ ******************************************************************************/
+ESOS_USER_TASK(recv_thread)
+{
+    static uint8_t u8_incoming;
+
+    ESOS_TASK_BEGIN();
+    while (TRUE)
+    {
+        ESOS_TASK_WAIT_ON_AVAILABLE_IN_COMM();
+        ESOS_TASK_WAIT_ON_GET_UINT8(u8_incoming);
+        circular_buffer_queue(&cbuff_recv, u8_incoming);
+        ESOS_TASK_SIGNAL_AVAILABLE_IN_COMM();
+        ESOS_TASK_YIELD();
+    } // endof while(TRUE)
+    ESOS_TASK_END();
+} // end recv_thread()
+
+/*******************************************************************************
+ * Function:         ESOS_USER_TASK(send_thread)
+ *
+ * PreCondition:     None
+ *
+ * Input:            None
+ *
+ * Output:           None
+ *
+ * Side Effects:     None
+ *
+ * Overview:         Sends out characters to USART2
+ *
+ * Note:             None
+ *
+ ******************************************************************************/
+ESOS_USER_TASK(send_thread)
+{
+    static uint8_t u8_outgoing;
+
+    ESOS_TASK_BEGIN();
+    while (TRUE)
+    {
+        if (circular_buffer_dequeue(&cbuff_send, &u8_outgoing)) {
+            ESOS_TASK_WAIT_ON_AVAILABLE_OUT_COMM();
+            ESOS_TASK_WAIT_ON_SEND_UINT8(u8_outgoing);
+            ESOS_TASK_SIGNAL_AVAILABLE_OUT_COMM();
+            ESOS_TASK_YIELD();
+        }
+        else {
+            ESOS_TASK_YIELD();
+        }
+
+    } // endof while(TRUE)
+    ESOS_TASK_END();
+} // end recv_thread()
+
+/*******************************************************************************
+ * Function:         ESOS_CHILD_TASK(cmd_child_task, uint8_t cmdByte)
+ *
+ * PreCondition:     Button B1 pushed
+ *
+ * Input:            Command byte
+ *
+ * Output:           None
+ *
+ * Side Effects:     None
+ *
+ * Overview:         Allows user to display, set current LEDx period
+ *
+ * Note:             None
+ *
+ ******************************************************************************/
+ESOS_CHILD_TASK(cmd_child_task, uint8_t cmdByte)
+{
+    // We should likely make these non-static, and simply call this on each iteration a single time.
+    // This child serves as the decision make for command bytes
+    static uint8_t i = 0;
+    static uint8_t u8_specifier = 0;
+    static uint8_t au8_numeric_str_recv[4];
+    static uint32_t u32_timerPeriodTemp;
+    static uint8_t tempChar = 0;
+    static uint16_t u16_maskbits = 0;
+    ESOS_TASK_BEGIN();
+    if (cmdByte == 'L') {       // Echo the current timer period via usart for specified LED
+        ESOS_TASK_WAIT_UNTIL(circular_buffer_dequeue(&cbuff_recv, &u8_specifier));
+        u8_specifier = u8_specifier - 0x30;
+        if (u8_specifier == 3) {                                                             // ELSE PROCESS EDUB-LED3 FREQ
+          // LOGIC FOR SPECIFIC LED
+            sprintf((char*)au8_numeric_str_recv, "%d", (int)au32_LEDPeriods[4]);
+        }
+        else if (u8_specifier == 2) {                                                             // ELSE PROCESS EDUB-LED2 FREQ
+          // LOGIC FOR SPECIFIC LED
+            sprintf((char*)au8_numeric_str_recv, "%d", (int)au32_LEDPeriods[3]);
+        }
+        else if (u8_specifier == 1) {                                                             // ELSE PROCESS EDUB-LED1 FREQ
+          // LOGIC FOR SPECIFIC LED
+            sprintf((char*)au8_numeric_str_recv, "%d", (int)au32_LEDPeriods[2]);
+        }
+        else if (u8_specifier == 0) {                                                             // ELSE PROCESS EDUB-LED0 FREQ
+          // LOGIC FOR SPECIFIC LED
+            sprintf((char*)au8_numeric_str_recv, "%d", (int)au32_LEDPeriods[1]);
+        }
+        if (u8_specifier <= 4) {
+            while (i < strlen(au8_numeric_str_recv)) {                          // Now send each byte individually
+                circular_buffer_queue(&cbuff_send, au8_numeric_str_recv[i]);
+                i++;
+                ESOS_TASK_YIELD();
+            }
+        }
+        else {
+            ESOS_TASK_WAIT_ON_AVAILABLE_OUT_COMM();
+            ESOS_TASK_WAIT_ON_SEND_STRING("INVALID FREQ ");
+            ESOS_TASK_SIGNAL_AVAILABLE_OUT_COMM();
+        }
+    }
+    else if (cmdByte == 'S') {  // Recv new timer period via usart
+        ESOS_TASK_WAIT_UNTIL((circular_buffer_dequeue(&cbuff_recv, &u8_specifier)));
+        u8_specifier = u8_specifier - 48;
+
+        ESOS_TASK_WAIT_UNTIL((circular_buffer_num_items(&cbuff_recv) >= 4) || (!NUCLEO_BUTTON_PUSHED()));
+        if (!NUCLEO_BUTTON_PUSHED()) {
+            break;                                                  // If the reason for breaking yield was button release, then we are done here.
+        }
+        else {                                                                   // else if the reason for breaking yield is sufficient data then process it
+            circular_buffer_dequeue_arr(&cbuff_recv, au8_numeric_str_recv, 4);  // so, get the 4 bytes we need
+            u32_timerPeriodTemp = a2i(au8_numeric_str_recv, 10);                    // then convert the 4 ascii bytes to uint32_t for use as new timer period
+            if (u32_timerPeriodTemp <= 9999 && u32_timerPeriodTemp >= 0) {
+                if (u8_specifier == 4) {
+                    au32_LEDPeriods[0] = u32_timerPeriodTemp;
+                    if (u8_LCDCurrentState == 0) // update LCD period if currently displayed
+                    {
+                        __initLCDMenu(0);
+                    }
+                }
+                else if (u8_specifier == 3) {
+                    esos_sui_flashLED(LED3, u32_timerPeriodTemp);
+                    au32_LEDPeriods[4] = u32_timerPeriodTemp;
+                    if (u8_LCDCurrentState == 4) // update LCD period if currently displayed
+                    {
+                        __initLCDMenu(4);
+                    }
+                }
+                else if (u8_specifier == 2) {
+                    esos_sui_flashLED(LED2, u32_timerPeriodTemp);
+                    au32_LEDPeriods[3] = u32_timerPeriodTemp;
+                    if (u8_LCDCurrentState == 3) // update LCD period if currently displayed
+                    {
+                        __initLCDMenu(3);
+                    }
+                }
+                else if (u8_specifier == 1) {
+                    esos_sui_flashLED(LED1, u32_timerPeriodTemp);
+                    au32_LEDPeriods[2] = u32_timerPeriodTemp;
+                    if (u8_LCDCurrentState == 2) // update LCD period if currently displayed
+                    {
+                        __initLCDMenu(2);
+                    }
+                }
+                else if (u8_specifier == 0) {
+                    esos_sui_flashLED(LED0, u32_timerPeriodTemp);
+                    au32_LEDPeriods[1] = u32_timerPeriodTemp;
+                    if (u8_LCDCurrentState == 1) // update LCD period if currently displayed
+                    {
+                        __initLCDMenu(1);
+                    }
+                }
+            }
+            else {
+                ESOS_TASK_WAIT_ON_AVAILABLE_OUT_COMM();
+                ESOS_TASK_WAIT_ON_SEND_STRING("INVALID FREQ ");
+                ESOS_TASK_SIGNAL_AVAILABLE_OUT_COMM();
+            }
+        }
+    }
+    else if (cmdByte == 'R') {
+        ESOS_TASK_WAIT_UNTIL((circular_buffer_num_items(&cbuff_recv) >= 4));
+
+        ESOS_TASK_WAIT_UNTIL(circular_buffer_dequeue_arr(&cbuff_recv, au8_numeric_str_recv, 4));
+        u16_maskbits = a2i(au8_numeric_str_recv, 16);
+        uint16_t u16_ReadVal = 0x0000;
+
+        uint8_t u8_buffer[4];
+        u16_ReadVal = read_keypad() & u16_maskbits;
+        itoa(u16_ReadVal, u8_buffer, 16);
+        circular_buffer_queue(&cbuff_send, u8_buffer[0]);
+        circular_buffer_queue(&cbuff_send, u8_buffer[1]);
+        circular_buffer_queue(&cbuff_send, u8_buffer[2]);
+        circular_buffer_queue(&cbuff_send, u8_buffer[3]);
+    }
+    i = 0;
+    *au8_numeric_str_recv = NULL;
+    u32_timerPeriodTemp = 0;
+    tempChar = 0;
+    ESOS_TASK_END();
+}
+
+
+//_______________________________________________________________________________
+/*******************************************************************************
+ * Function:         ESOS_USER_TASK(testApp_thread)
+ *
+ * PreCondition:     None
+ *
+ * Input:            None
+ *
+ * Output:           None
+ *
+ * Side Effects:     None
+ *
+ * Overview:         Encrypts/decrypts data between RX and TX buffers
+ *
+ * Note:             None
+ *
+ ******************************************************************************/
+ESOS_USER_TASK(testApp_thread)
+{
+    static uint8_t u8_byteToProcess = 0;
+    static uint8_t b1Pressed = 0, sw2Pressed = 0, sw3Pressed = 0, sw4Pressed = 0, sw5Pressed = 0;
+    static uint8_t cryptedByte = 0;
+    static uint16_t u16_runningTotal;
+    static ESOS_TASK_HANDLE cmd_child;                // accept only keyboard commands for B1
+    static systemPriority currentPriority = echo;
+    ESOS_TASK_BEGIN();
+    ESOS_TASK_WAIT_TICKS(100);
+    while (TRUE)
+    {
+        if (!esos_sui_isSWPressed(B1)) {
+            esos_7seg_blink(ON, 100);
+            esos_7seg_writeString("ECHO");
+            ESOS_TASK_WAIT_TICKS(4000);
+            esos_7seg_blink(OFF, 0);
+            ESOS_TASK_WAIT_WHILE(!esos_sui_isSWPressed(B1));
+        }
+        //_____________________________________________________________________________________________
+
+        else if (esos_sui_isSWPressed(SW2)) {
+            esos_7seg_blink(OFF, 500);
+            esos_7seg_writeString("COOL BEANS");
+            ESOS_TASK_WAIT_TICKS(4000);
+            ESOS_TASK_WAIT_WHILE(esos_sui_isSWPressed(SW2));
+        }
+        //_____________________________________________________________________________________________
+        // PRIORITY 3: TOUPPER()
+        else if (esos_sui_isSWPressed(SW3)) {
+            esos_7seg_blink(OFF, 500);
+            esos_7seg_writeU16Decimal(200);
+            ESOS_TASK_WAIT_TICKS(4000);
+            ESOS_TASK_WAIT_WHILE(esos_sui_isSWPressed(SW3));
+        }
+        //_____________________________________________________________________________________________
+        // PRIORITY 4: ENCYPTION
+        else if (esos_sui_isSWPressed(SW4)) {
+            esos_7seg_blink(OFF, 500);
+            esos_7seg_writeU16Hex(347);
+            ESOS_TASK_WAIT_WHILE(esos_sui_isSWPressed(SW4));
+        }
+        //_____________________________________________________________________________________________
+        // PRIORIRTY 5: DECRYPTION
+        else if (esos_sui_isSWPressed(SW5)) {
+            esos_7seg_blink(OFF, 500);
+            esos_7seg_writeI8Hex(-20);
+            ESOS_TASK_WAIT_WHILE(esos_sui_isSWPressed(SW5));
+        }
+        //_____________________________________________________________________________________________
+        // PRIORITY 6: ECHO
+        else {
+            ESOS_TASK_YIELD();
+        }
+        ESOS_TASK_YIELD();
+    }
+    ESOS_TASK_END();
+}
+
+/*******************************************************************************
+ * Function:         ESOS_USER_TASK(keypad_thread)
+ *
+ * PreCondition:     None
+ *
+ * Input:            None
+ *
+ * Output:           None
+ *
+ * Side Effects:     None
+ *
+ * Overview:         Maintains LCD functionality throughout program operation
+ *                   Status menu options: SELECTING_LED, SETTING_LED_PERIOD,
+ *                   and ENCRYPTING_TEXT
+ *
+ * Note:             None
+ *
+ ******************************************************************************/
+ESOS_USER_TASK(keypad_thread)
+{
+
+    uint16_t u16_KeypadRead;
+    uint8_t u16_lastUpdate; // stops from repeated updates
+    static uint16_t u16_runningTotal = 0;
+    static uint8_t au8_userBuffer[4] = { '_','_','_','_' };
+    static uint8_t bufferpoint = 3;
+    uint8_t base_2n;
+    uint32_t u32_period = 0;
+    uint32_t u32_PeriodDigits[NUM_DIGITS_IN_PERIOD] = { '0','0','0','0' };
+    static ESOS_TASK_HANDLE edit_led;
+    ESOS_TASK_BEGIN();
+    while (TRUE)
+    {
+        ESOS_TASK_YIELD();
+    }
+    ESOS_TASK_END();
+}
+
+
+/************************************************************************
+ * User supplied functions
+ ************************************************************************/
+
+ /*******************************************************************************
+  * Function:         __user_init_hw(void)
+  *
+  * PreCondition:     None
+  *
+  * Input:            None
+  *
+  * Output:           None
+  *
+  * Side Effects:     None
+  *
+  * Overview:         Initializes the hardware used in this application
+  *
+  * Note:             None
+  *
+  ******************************************************************************/
+void __user_init_hw(void)
+{
+
+    esos_lcd44780_configDisplay();
+    __esos_lcd44780_init();
+    esos_lcd44780_clearScreen();
+    __initLCDMenu(u8_LCDCurrentState); // initialize LCD character display initialize to LD2
+    //writeLCDPeriod(0); // send the period of [0] = LD2 to the display
+    //_______________________________________________________________________________________________________
+    // REGISTER HW-INDEPENDENT SWITCHES:
+    B1 = esos_sui_registerSwitch(NUCLEO_BUTTON_PORT, NUCLEO_BUTTON_PIN);
+    SW2 = esos_sui_registerSwitch(EDUB_SW2_PORT, EDUB_SW2_PIN);
+    SW3 = esos_sui_registerSwitch(EDUB_SW3_PORT, EDUB_SW3_PIN);
+    SW4 = esos_sui_registerSwitch(EDUB_SW4_PORT, EDUB_SW4_PIN);
+    SW5 = esos_sui_registerSwitch(EDUB_SW5_PORT, EDUB_SW5_PIN);
+    //__________________________________________________________________________________________________________________
+    LED0 = esos_sui_registerLED(EDUB_LED0_PORT, EDUB_LED0_PIN);
+    LED1 = esos_sui_registerLED(EDUB_LED1_PORT, EDUB_LED1_PIN);
+    LED2 = esos_sui_registerLED(EDUB_LED2_PORT, EDUB_LED2_PIN);
+    LED3 = esos_sui_registerLED(EDUB_LED3_PORT, EDUB_LED3_PIN);
+
+    esos_sui_flashLED(LED0, au32_LEDPeriods[1]);
+    esos_sui_flashLED(LED1, au32_LEDPeriods[2]);
+    esos_sui_flashLED(LED2, au32_LEDPeriods[3]);
+    esos_sui_flashLED(LED3, au32_LEDPeriods[4]);
+
+
+    //____________________________________________________________________________________________________________________
+
+    EDUB_KEYPAD_COL0_SETUP();
+    EDUB_KEYPAD_COL1_SETUP();
+    EDUB_KEYPAD_COL2_SETUP();
+    EDUB_KEYPAD_COL3_SETUP();
+}
+
+/******************************************************************************
+ * Function:        void user_init(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        user_init is a centralized initialization routine where
+ *                  the user can setup their application.   It is called
+ *                  automagically by ES_OS during the operating system
+ *                  initialization.
+ *
+ * Note:            The user should set up any state machines and init
+ *                  all application variables.  They can also turn on
+ *                  any needed peripherals here.
+ *
+ *                  The user SHALL NOT mess with the interrupt hardware
+ *                  directly!!!  The ES_OS must be aware of the interrupts
+ *                  and provides osXXXXXXX functions for the user to use.
+ *                  Using these ES_OS-provided functions, the user may
+ *                  (and probably should) initialize, register, and enable
+ *                  interrupts in this routine.
+ *
+ *                  Furthermore, the user should register AT LEAST one
+ *                  user application task here (via esos_RegisterTask) or
+ *                  the ES_OS scheduler will have nothing to schedule
+ *                  to run when this function returns.
+ *
+ *****************************************************************************/
+void user_init(void)
+{
+    /* Sets up software structures needed for program execution */
+    /* Sets up software structures needed for program execution */
+    circular_buffer_init(&cbuff_recv);
+    circular_buffer_init(&cbuff_send);
+
+    esos_init_7seg_service();
+    /* Initializes hardware */
+    __user_init_hw();
+
+    /* Drive the UART directly to print the HELLO_MSG */
+    __esos_unsafe_PutString(HELLO_MSG);
+    esos_RegisterTask(send_thread);
+    esos_RegisterTask(recv_thread);
+    esos_RegisterTask(testApp_thread);
+    esos_RegisterTask(keypad_thread);
+    __esos_InitSUI();
+
+} // end user_init()
+
+/******************************************************************************
+ * Function:        void __initLCDMenu(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        The __initLCDMenu() function is called in the hardware setup and
+ *                  puts the LCD is its initial state for program initialization.
+ *
+ * Note:            None
+ *
+ *****************************************************************************/
+
+void __initLCDMenu(uint8_t u8_LED_num)
+{
+    // Write the initial menu to the screen
+    esos_lcd44780_writeString(0, 0, psz_SelectMenuLineOneDefault);
+    esos_lcd44780_writeChar(0, 0, '^');
+    esos_lcd44780_writeString(1, 0, psz_SelectMenuLineTwoDefault);
+
+    // Write LED name to the display
+    esos_lcd44780_writeString(0, 1, apsz_LEDNames[u8_LED_num]);
+
+    uint32_t u32_period = au32_LEDPeriods[u8_LED_num];
+    /* Stores the flash period as an array of digits */
+    uint32_t u32_PeriodDigits[NUM_LEDS];
+    u32_PeriodDigits[THOUSANDS_PLACE] = u32_period / 1000;
+    u32_PeriodDigits[HUNDREDS_PLACE] = (u32_period / 100)
+        - (u32_PeriodDigits[THOUSANDS_PLACE] * 10);
+    u32_PeriodDigits[TENS_PLACE] = (u32_period / 10)
+        - (u32_PeriodDigits[THOUSANDS_PLACE] * 100)
+        - (u32_PeriodDigits[HUNDREDS_PLACE] * 10);
+    u32_PeriodDigits[ONES_PLACE] = u32_period
+        - (u32_PeriodDigits[THOUSANDS_PLACE] * 1000)
+        - (u32_PeriodDigits[HUNDREDS_PLACE] * 100)
+        - (u32_PeriodDigits[TENS_PLACE] * 10);
+
+    // Write period to the display
+    esos_lcd44780_writeChar(0, 9, '0' + u32_PeriodDigits[THOUSANDS_PLACE]);
+    esos_lcd44780_writeChar(0, 10, '0' + u32_PeriodDigits[HUNDREDS_PLACE]);
+    esos_lcd44780_writeChar(0, 11, '0' + u32_PeriodDigits[TENS_PLACE]);
+    esos_lcd44780_writeChar(0, 12, '0' + u32_PeriodDigits[ONES_PLACE]);
+}
+
+/******************************************************************************
+ * Function:        void shiftBufferLeft(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           Pointer to the array to be shifted, data unsigned 8 bit data
+ *                  to be pushed, and the size of the array.
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        The shiftBufferLeft(uint8_t* buffer, uint8_t PushByte, uint8_t size) function
+ *                  is used to shift arrays throughout program operation.
+ *
+ * Note:            None
+ *
+ *****************************************************************************/
+#endif

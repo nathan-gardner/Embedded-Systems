@@ -1,0 +1,7 @@
+**/build
+**/.vscode
+*.d
+*.json
+*.log
+*.o
+*.lst

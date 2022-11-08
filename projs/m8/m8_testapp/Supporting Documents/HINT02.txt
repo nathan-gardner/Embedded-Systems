@@ -1,0 +1,21 @@
+For your amusements:
+
+#define PATTERN_BLANK       0xFF
+#define PATTERN_0           (SEG_A & SEG_B & SEG_C & SEG_D & SEG_E & SEG_F)
+#define PATTERN_1           (SEG_B & SEG_C)
+#define PATTERN_2           (SEG_A & SEG_B & SEG_D & SEG_E & SEG_G)
+#define PATTERN_3           (SEG_A & SEG_B & SEG_C & SEG_D & SEG_G)
+#define PATTERN_4           (SEG_B & SEG_C & SEG_F & SEG_G)
+#define PATTERN_5           (SEG_A & SEG_C & SEG_D & SEG_F & SEG_G)
+#define PATTERN_6           (SEG_A & SEG_C & SEG_D & SEG_E & SEG_F & SEG_G)
+#define PATTERN_7           (SEG_A & SEG_B & SEG_C)
+#define PATTERN_8           (SEG_A & SEG_B & SEG_C & SEG_D & SEG_E & SEG_F & SEG_G)
+#define PATTERN_9           (SEG_A & SEG_B & SEG_C & SEG_F & SEG_G)
+#define PATTERN_A           (SEG_A & SEG_B & SEG_C & SEG_E & SEG_F & SEG_G)
+#define PATTERN_B           (SEG_C & SEG_D & SEG_E & SEG_F & SEG_G)
+#define PATTERN_C           (SEG_A & SEG_D & SEG_E & SEG_F)
+#define PATTERN_D           (SEG_B & SEG_C & SEG_D & SEG_E & SEG_G)
+#define PATTERN_E           (SEG_A & SEG_D & SEG_E & SEG_F & SEG_G)
+#define PATTERN_F           (SEG_A & SEG_E & SEG_F & SEG_G)
+#define PATTERN_DASH        (SEG_G)
+
